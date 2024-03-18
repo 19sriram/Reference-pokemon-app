@@ -1,4 +1,4 @@
-
+import React from 'react';
 import MainWrapper from './components/mainWrapper.tsx';
 
 function App() {

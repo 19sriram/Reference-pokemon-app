@@ -1,4 +1,4 @@
-import { useState, useEffect, Fragment } from "react";
+import { useState, useEffect, Fragment }  from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import Loader from "./loader/loader";
@@ -25,7 +25,7 @@ export default function MainWrapper() {
    * fetchData(url,limit, offset)
    */
 
-  const fetchData = (url: string, limit?: number, offset?: number) => {
+  const fetchData = (url: string|any, limit?: number, offset?: number) => {
     try {
       setIsLoading(true);
       return fetchPokemonData(url, limit, offset);
@@ -39,10 +39,10 @@ export default function MainWrapper() {
    *
    * @param pokemonData : Pokemon list with name and image from intial fetch
    */
-  const getPokemon = async (pokemonData: string[]) => {
+  const getPokemon = async (pokemonData: string[] | any) => {
     setIsLoading(true);
     let _pokemonObject = await Promise.all(
-      pokemonData.map(async (pokemon: any) => {
+      pokemonData.map(async (pokemon:any) => {
         return fetchData(pokemon.url)
           .then((resp: { data: [] }) => resp.data)
           .catch((error: any) => console.error(error));
@@ -129,7 +129,7 @@ export default function MainWrapper() {
   };
 
   return (
-    <div className="mainWrapper">
+<div className="mainWrapper">
       <Container fluid>
         <HeaderComponent
           isLoading={isLoading}
